@@ -1,4 +1,4 @@
-package com.harzzy.trakcov.api.Response
+package com.harzzy.trakcov.api.response.country
 
 data class Info(
     val code: String,

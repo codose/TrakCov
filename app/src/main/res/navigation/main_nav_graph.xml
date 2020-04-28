@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/starterFragment">
+
+    <fragment
+        android:id="@+id/starterFragment"
+        android:name="com.harzzy.trakcov.views.ui.StarterFragment"
+        android:label="StarterFragment" >
+        <action
+            android:id="@+id/action_starterFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_right_in"
+            app:popEnterAnim="@anim/slide_right_in"
+            app:popExitAnim="@anim/slide_left_out"
+            app:popUpTo="@id/starterFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.harzzy.trakcov.views.ui.MainFragment"
+        android:label="MainFragment" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.harzzy.trakcov.views.ui.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.harzzy.trakcov.views.ui.StatsFragment"
+        android:label="fragment_stats"
+        tools:layout="@layout/fragment_stats" />
+</navigation>

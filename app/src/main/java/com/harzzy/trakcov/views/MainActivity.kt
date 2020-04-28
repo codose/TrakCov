@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.github.ybq.android.spinkit.style.DoubleBounce
+import com.github.ybq.android.spinkit.style.FadingCircle
 import com.harzzy.trakcov.R
 import com.harzzy.trakcov.databinding.ActivityMainBinding
 import com.harzzy.trakcov.utils.Resource
 import com.harzzy.trakcov.views.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,33 +24,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
 
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
-        viewModel.countryData.observe(this, Observer {
-            when(it){
-                is Resource.Loading -> {
-                    binding.progressBar.visibility = VISIBLE
-                }
-
-                is Resource.Success -> {
-
-                    binding.apply {
-                        binding.progressBar.visibility = GONE
-                        numberCases.text = it.data.total_cases.toString()
-                        activeCases.text = it.data.total_active_cases.toString()
-                        recovered.text = it.data.total_recovered.toString()
-                        deaths.text = it.data.total_deaths.toString()
-                        newCases.text = it.data.total_new_cases_today.toString()
-                    }
-
-                }
-
-                is Resource.Failure -> {
-                    binding.progressBar.visibility = GONE
-                    binding.errorText.text = it.message
-                }
-            }
-        })
+        val doubleBounce = DoubleBounce()
+        doubleBounce.color = ContextCompat.getColor(applicationContext!!, R.color.colorPrimary)
+        val progressBar = binding.progressBar
+        progressBar.indeterminateDrawable = doubleBounce
 
     }
 }
