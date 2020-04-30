@@ -12,8 +12,20 @@
         android:roundIcon="@drawable/trakcov"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name="br.com.mauker.materialsearchview.db.HistoryProvider"
+            android:authorities="br.com.mauker.materialsearchview.searchhistorydatabase"
+            android:exported="false"
+            android:protectionLevel="signature"
+            android:syncable="true"/>
+
+        <meta-data android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
         <activity android:name=".views.MainActivity">
             <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

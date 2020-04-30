@@ -6,6 +6,7 @@ import com.harzzy.trakcov.api.RetrofitClient
 import com.harzzy.trakcov.api.response.global.Result
 import com.harzzy.trakcov.api.response.international.InternationalResponseItem
 import com.harzzy.trakcov.api.response.state.State
+import com.harzzy.trakcov.api.response.trend.TrendResponse
 import com.harzzy.trakcov.utils.Resource
 import java.lang.Exception
 
@@ -49,6 +50,26 @@ class NetworkRepository(context : Context) {
             val cases : ArrayList<InternationalResponseItem> = ArrayList()
             cases.addAll(getCountry)
             Resource.Success(cases)
+        }catch (e : Exception){
+            Resource.Failure(e.message!!)
+        }
+    }
+
+    suspend fun searchCountry(query: String?): Resource<List<InternationalResponseItem>> {
+        return try {
+            val getCountry = retrofitClient.covidCountryService().searchCountry(query!!).await()
+            val cases : ArrayList<InternationalResponseItem> = ArrayList()
+            cases.add(getCountry)
+            Resource.Success(cases)
+        }catch (e : Exception){
+            Resource.Failure(e.message!!)
+        }
+    }
+
+    suspend fun getTimeLine(query: String?): Resource<TrendResponse> {
+        return try {
+            val getCountry = retrofitClient.covidCountryService().getTimeLine(query!!).await()
+            Resource.Success(getCountry)
         }catch (e : Exception){
             Resource.Failure(e.message!!)
         }

@@ -27,10 +27,26 @@
         android:id="@+id/locationFragment"
         android:name="com.harzzy.trakcov.views.ui.LocationFragment"
         android:label="fragment_location"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_singleCountryFragment"
+            app:destination="@id/singleCountryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/statsFragment"
         android:name="com.harzzy.trakcov.views.ui.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" />
+    <fragment
+        android:id="@+id/singleCountryFragment"
+        android:name="com.harzzy.trakcov.views.ui.SingleCountryFragment"
+        android:label="SingleCountryFragment" >
+        <argument
+            android:name="country_name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.harzzy.trakcov.views.ui.NewsFragment"
+        android:label="NewsFragment" />
 </navigation>

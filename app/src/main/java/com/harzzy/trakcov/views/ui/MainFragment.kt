@@ -1,6 +1,7 @@
 package com.harzzy.trakcov.views.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.harzzy.trakcov.R
 import com.harzzy.trakcov.databinding.FragmentMainBinding
+import com.harzzy.trakcov.utils.Constants.NETWORK_TAG
 import com.harzzy.trakcov.utils.Resource
 import com.harzzy.trakcov.views.adapter.MainAdapter
 import com.harzzy.trakcov.views.adapter.StateClickListener
@@ -32,6 +34,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
         // Inflate the layout for this fragment
+        hideNavigationIcon()
         return binding.root
     }
 
@@ -67,7 +70,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 }
 
                 is Resource.Failure -> {
-                    hideProgress()
+                    showNetworkError()
+                    Log.e(NETWORK_TAG,it.message)
+                    networkButton.setOnClickListener {
+                        viewModel.getAllData()
+                    }
                 }
             }
         })

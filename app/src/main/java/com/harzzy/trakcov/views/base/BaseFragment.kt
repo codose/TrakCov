@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.LayoutRes
@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.github.ybq.android.spinkit.style.FadingCircle
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.harzzy.trakcov.R
@@ -24,11 +25,18 @@ import java.util.regex.Pattern
 abstract class BaseFragment<DB : ViewDataBinding> : Fragment(){
     open lateinit var binding: DB
     lateinit var doubleBounce : DoubleBounce
-    val progressBar: ProgressBar by lazy {
+    private val progressBar: ProgressBar by lazy {
         activity?.findViewById<ProgressBar>(R.id.progressBar)!!
     }
     val fragment : FrameLayout by lazy {
         activity?.findViewById<FrameLayout>(R.id.frame_layout)!!
+    }
+    private val networkLayout : FrameLayout by lazy{
+        activity?.findViewById<FrameLayout>(R.id.network_frame)!!
+    }
+
+    val networkButton : Button by lazy {
+        activity?.findViewById<Button>(R.id.networ_error_retry_button)!!
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +56,7 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(){
         return binding.root
     }
 
+
     private fun init(inflater : LayoutInflater, container : ViewGroup?){
         binding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
     }
@@ -66,20 +75,37 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(){
     }
 
     fun showProgress() {
-        progressBar.visibility = View.VISIBLE
-        fragment.visibility = View.INVISIBLE
+        progressBar.visibility = VISIBLE
+        fragment.visibility = INVISIBLE
+        networkLayout.visibility = GONE
+
     }
 
     fun hideProgress() {
         progressBar.visibility = GONE
-        fragment.visibility = View.VISIBLE
+        fragment.visibility = VISIBLE
+    }
+    fun showNetworkError(){
+        progressBar.visibility = GONE
+        networkLayout.visibility = VISIBLE
     }
 
     fun formatLayout(view : Int){
-        val logo = activity?.findViewById<ImageView>(R.id.imageView)
         val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        logo!!.visibility = view
         bottomNavigationView!!.visibility = view
+    }
+
+    fun showNavigationIcon(){
+        val appbar = activity!!.findViewById<MaterialToolbar>(R.id.topAppBar)
+        appbar.setNavigationIcon(R.drawable.back)
+        appbar.setNavigationOnClickListener {
+            activity!!.onBackPressed()
+        }
+    }
+
+    fun hideNavigationIcon(){
+        val appbar = activity!!.findViewById<MaterialToolbar>(R.id.topAppBar)
+        appbar.navigationIcon = null
     }
 
 

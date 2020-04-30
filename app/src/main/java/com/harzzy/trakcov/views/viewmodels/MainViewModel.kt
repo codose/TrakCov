@@ -34,7 +34,7 @@ class MainViewModel(context: Context) : ViewModel() {
     }
 
 
-    private fun getAllData(){
+    fun getAllData(){
         _countryData.value = Resource.Loading()
         uiScope.launch {
             withContext(Dispatchers.IO){

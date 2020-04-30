@@ -10,6 +10,7 @@
 
     <style name="CardView.Light.Custom" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">16dp</item>
         <item name="rippleColor">@color/lightGrey</item>
     </style>
 
@@ -96,5 +97,26 @@
         <item name="boxCornerRadiusTopEnd">24dp</item>
         <item name="rippleColor">@color/textColorPrimary</item>
     </style>
+
+<!--    <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView.ActionBar">-->
+<!--        <item name="layout">@layout/search_layout</item>-->
+<!--        <item name="commitIcon">@drawable/search</item>-->
+<!--        <item name="colorControlNormal">@color/textColorPrimary</item>-->
+<!--        <item name="colorControlHighlight">@color/colorPrimaryDark</item>-->
+<!--        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>-->
+<!--        <item name="suggestionRowLayout">@layout/search_view_suggestion_row</item>-->
+<!--        <item name="android:maxWidth">9999dp</item>-->
+<!--    </style>-->
+
+<!--    <style name="AutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">-->
+<!--        <item name="android:popupBackground">@drawable/search_suggestions_bg</item>-->
+<!--        <item name="android:popupElevation">0dp</item>-->
+<!--    </style>-->
+
+<!--    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Toolbar.Surface">-->
+<!--        <item name="searchViewStyle">@style/SearchViewTheme</item>-->
+<!--    </style>-->
+
+
 
 </resources>

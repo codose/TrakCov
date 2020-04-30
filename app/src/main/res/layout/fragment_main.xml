@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,7 +32,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_text_view">
@@ -193,7 +193,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
-                app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toStartOf="@+id/activeCard"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -237,7 +236,6 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
-                app:cardCornerRadius="24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/casesCard"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -283,7 +281,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
-                app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toStartOf="@+id/death_card"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -328,7 +325,6 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
-                app:cardCornerRadius="24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/recovered_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

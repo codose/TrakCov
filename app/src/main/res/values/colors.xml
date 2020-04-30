@@ -5,10 +5,11 @@
     <color name="colorPrimaryDark">#004ba0</color>
     <color name="colorAccent">#c62828</color>
     <color name="yellow">#ffa000</color>
+    <color name="colorPrimaryTransparent">#401976D2</color>
     <color name="green">#00600f</color>
     <color name="textColorPrimary">#595959</color>
     <color name="textColorSecondary">#636363</color>
-    <color name="lightGrey">#F3F3F3</color>
+    <color name="lightGrey">#FAFAFA</color>
     <color name="white">#FFFFFF</color>
 
 
