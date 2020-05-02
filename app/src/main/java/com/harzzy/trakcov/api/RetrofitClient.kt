@@ -70,14 +70,13 @@ class RetrofitClient(context: Context) {
                 return mGsonConverter!!
             }
 
-
-        fun covidService() = Retrofit.Builder()
+        fun covidNewsService() = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(gsonConverter)
             .client(okHttpClient.build())
             .build()
-            .create(CovidService::class.java)
+        .create(CovidService::class.java)
 
         fun covidStateService() = Retrofit.Builder()
             .baseUrl(BASE_URL2)
@@ -96,10 +95,10 @@ class RetrofitClient(context: Context) {
             .create(CovidService::class.java)
 
     companion object {
-        private const val BASE_URL =
-            "https://api.thevirustracker.com/"
-        private const val BASE_URL2 = "https://covidnigeria.herokuapp.com/"
+        private const val BASE_URL = "https://newsapi.org/v2/"
+        private const val BASE_URL2 = "https://www.trackcorona.live/api/"
         private const val BASE_URL3 = "https://corona.lmao.ninja/v2/"
+
 
     }
 }

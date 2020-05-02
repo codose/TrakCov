@@ -89,6 +89,9 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(){
         progressBar.visibility = GONE
         networkLayout.visibility = VISIBLE
     }
+    fun hideNetworkError(){
+        networkLayout.visibility = GONE
+    }
 
     fun formatLayout(view : Int){
         val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)

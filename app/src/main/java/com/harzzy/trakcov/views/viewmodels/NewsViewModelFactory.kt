@@ -27,11 +27,11 @@ import androidx.lifecycle.ViewModelProvider
  *
  * Provides the SleepDatabaseDao and context to the ViewModel.
  */
-class CountryViewModelFactory (private val context: Context) : ViewModelProvider.Factory {
+class NewsViewModelFactory (private val context: Context) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CountryViewModel::class.java)) {
-            return CountryViewModel(context) as T
+        if (modelClass.isAssignableFrom(NewsViewModel::class.java)) {
+            return NewsViewModel(context) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

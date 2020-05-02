@@ -51,6 +51,11 @@
             tools:visibility="visible" />
 
 
+        <br.com.mauker.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <FrameLayout
             android:id="@+id/network_frame"
             android:layout_width="match_parent"
@@ -69,7 +74,6 @@
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="56dp"
             android:isScrollContainer="true"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -78,19 +82,10 @@
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="56dp"
                 app:defaultNavHost="true"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:navGraph="@navigation/main_nav_graph" />
         </FrameLayout>
-
-        <br.com.mauker.materialsearchview.MaterialSearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </br.com.mauker.materialsearchview.MaterialSearchView>
-
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -99,7 +94,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:labelVisibilityMode="unlabeled"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -4,22 +4,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.anychart.APIlib
-import com.anychart.AnyChart
 import com.anychart.AnyChartView
-import com.anychart.chart.common.dataentry.DataEntry
-import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.anychart.charts.Pie
-import com.anychart.enums.Align
-import com.anychart.enums.LegendLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.android.material.appbar.MaterialToolbar
 import com.harzzy.trakcov.R
 import com.harzzy.trakcov.api.response.international.InternationalResponseItem
 import com.harzzy.trakcov.databinding.FragmentSingleCountryBinding
@@ -32,7 +26,7 @@ import com.harzzy.trakcov.utils.Resource
 import com.harzzy.trakcov.views.base.BaseFragment
 import com.harzzy.trakcov.views.viewmodels.CountryViewModel
 import com.pixplicity.easyprefs.library.Prefs
-import ng.educo.views.categories.CountryViewModelFactory
+import com.harzzy.trakcov.views.viewmodels.CountryViewModelFactory
 
 
 /**
@@ -56,8 +50,9 @@ class SingleCountryFragment : BaseFragment<FragmentSingleCountryBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showNavigationIcon()
+        formatLayout(GONE)
         val args = SingleCountryFragmentArgs.fromBundle(arguments!!)
-
+        hideNetworkError()
         Prefs.putString(PREFS_QUERY, "String")
 
         pieChart = binding.pieChart
@@ -70,7 +65,11 @@ class SingleCountryFragment : BaseFragment<FragmentSingleCountryBinding>() {
         val factory = CountryViewModelFactory(context!!)
         val viewModel = ViewModelProvider(this, factory)[CountryViewModel::class.java]
 
-        viewModel.searchCountry(countryName)
+        if(countryName == "Global"){
+            viewModel.getGlobalData()
+        }else {
+            viewModel.searchCountry(countryName)
+        }
 
         viewModel.countryData.observe(viewLifecycleOwner, Observer {
             when(it){
@@ -93,13 +92,47 @@ class SingleCountryFragment : BaseFragment<FragmentSingleCountryBinding>() {
             }
         })
 
+        viewModel.globalData.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is Resource.Loading ->{
+                    showProgress()
+                }
+                is Resource.Success -> {
+                    val data = it.data
+                    APIlib.getInstance().setActiveAnyChartView(pieChart)
+                    pieChart.setChart(ChartSetup.setUpPieChart(data.active, data.deaths, data.recovered))
+                    binding.apply {
+                        countryNameTextView.text = "Global"
+                        totalCasesTxtView.text = "${data.cases} confirmed cases"
+                        singleCasesTextView.text = data.cases.toString()
+                        activeCasesTxtView.text = data.active.toString()
+                        singleRecoveryTextView.text = data.recovered.toString()
+                        singleDeathsTextView.text = data.deaths.toString()
+                        todayCases.text = data.todayCases.toString()
+                        todayDeaths.text = data.todayDeaths.toString()
+                        casesPerMillion.text = data.casesPerOneMillion.toString()
+                        deathsPerMillion.text = data.deathsPerOneMillion.toString()
+                    }
+                    viewModel.getGlobalTimeline()
+                }
+
+                is Resource.Failure -> {
+                    showNetworkError()
+                    networkButton.setOnClickListener {
+                        viewModel.getGlobalData()
+                    }
+                    Log.e(NETWORK_TAG,it.message)
+                }
+            }
+        })
+
         viewModel.countryTrend.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading -> {
                     showProgress()
                 }
                 is Resource.Success -> {
-                    val data = it.data.timeline
+                    val data = it.data
                     APIlib.getInstance().setActiveAnyChartView(lineChart)
                     val cartesian = ChartSetup.setUpLineChart(data)
                     lineChart.setChart(cartesian)
@@ -115,7 +148,6 @@ class SingleCountryFragment : BaseFragment<FragmentSingleCountryBinding>() {
                 }
             }
         })
-
     }
 
     private fun setCountryData(countryData: InternationalResponseItem) {
@@ -133,7 +165,7 @@ class SingleCountryFragment : BaseFragment<FragmentSingleCountryBinding>() {
             updatedTextView.text = "Last Updated : ${formatDate(countryData.updated)}"
         }
         APIlib.getInstance().setActiveAnyChartView(pieChart)
-        pieChart.setChart(ChartSetup.setUpPieChart(countryData))
+        pieChart.setChart(ChartSetup.setUpPieChart(countryData.active,countryData.deaths,countryData.recovered))
         Glide.with(context!!)
             .load(countryData.countryInfo.flag)
             .diskCacheStrategy(DiskCacheStrategy.ALL)

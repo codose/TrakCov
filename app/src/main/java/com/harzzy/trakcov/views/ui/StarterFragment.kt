@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import com.harzzy.trakcov.R
@@ -33,6 +34,9 @@ class StarterFragment : BaseFragment<FragmentStarterBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         formatLayout(GONE)
+        hideNetworkError()
+        val appbar = activity!!.findViewById<MaterialToolbar>(R.id.topAppBar)
+        appbar.visibility = GONE
         if(Prefs.getString("USERNAME","Not Set") != "Not Set"){
             findNavController().navigate(StarterFragmentDirections.actionStarterFragmentToMainFragment())
         }

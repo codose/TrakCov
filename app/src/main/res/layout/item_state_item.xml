@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         app:cardCornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,6 @@
 
             <TextView
                 android:id="@+id/cases_world"
-                tools:text="2298789"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -100,40 +99,41 @@
                 app:layout_constraintEnd_toStartOf="@+id/active_cases_world"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/state_name" />
+                app:layout_constraintTop_toBottomOf="@+id/state_name"
+                tools:text="2298789" />
 
             <TextView
                 android:id="@+id/active_cases_world"
-                tools:text="2298789"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Numbers.Yellow"
                 app:layout_constraintEnd_toStartOf="@+id/recovered_cases_world"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/cases_world"
-                app:layout_constraintTop_toTopOf="@+id/cases_world" />
+                app:layout_constraintTop_toTopOf="@+id/cases_world"
+                tools:text="2298789" />
 
             <TextView
                 android:id="@+id/recovered_cases_world"
-                tools:text="2298789"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Numbers.Green"
                 app:layout_constraintEnd_toStartOf="@+id/death_cases_world"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/active_cases_world"
-                app:layout_constraintTop_toTopOf="@+id/active_cases_world" />
+                app:layout_constraintTop_toTopOf="@+id/active_cases_world"
+                tools:text="2298789" />
 
             <TextView
                 android:id="@+id/death_cases_world"
-                tools:text="2298789"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Numbers.Red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/recovered_cases_world"
-                app:layout_constraintTop_toTopOf="@+id/recovered_cases_world" />
+                app:layout_constraintTop_toTopOf="@+id/recovered_cases_world"
+                tools:text="2298789" />
 
             <View
                 android:id="@+id/divider"

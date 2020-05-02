@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
         val navController = this.findNavController(R.id.nav_host_fragment)
         searchView = findViewById(R.id.search_view)
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.closeSearch()
                 Prefs.putString("Query", query)
-                bottomNavigationView.selectedItemId = R.id.locationFragment
+                navController.navigate(R.id.locationFragment)
                 return true
             }
 

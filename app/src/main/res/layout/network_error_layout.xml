@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/transparent"
+        android:backgroundTint="@color/white"
         android:backgroundTintMode="add"
         android:elevation="0dp"
         android:text="Network error. Click here to retry"

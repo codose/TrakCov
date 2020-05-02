@@ -22,7 +22,7 @@ import com.harzzy.trakcov.views.adapter.CountryClickListener
 import com.harzzy.trakcov.views.base.BaseFragment
 import com.harzzy.trakcov.views.viewmodels.CountryViewModel
 import com.pixplicity.easyprefs.library.Prefs
-import ng.educo.views.categories.CountryViewModelFactory
+import com.harzzy.trakcov.views.viewmodels.CountryViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -41,22 +41,33 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModelFactory = CountryViewModelFactory(context!!)
-        hideNavigationIcon()
+        showNavigationIcon()
+        formatLayout(View.GONE)
 
+        val args = arguments?.let { LocationFragmentArgs.fromBundle(it) }
 
         val viewModel = ViewModelProvider(activity!!, viewModelFactory)[CountryViewModel::class.java]
+
+        val query = Prefs.getString(PREFS_QUERY, PREFS_QUERY_NULL)
+
+        hideNetworkError()
+
+        if(args?.countries != null){
+            val countries : ArrayList<String> = ArrayList()
+            val n = args.countries.size
+            countries.addAll(args.countries)
+            countries.add(0, args.countries[0])
+            countries.add(n, args.countries[n-1])
+            binding.continentName.text = args.continentName
+            viewModel.getContinentCountries(countries)
+        }else{
+            viewModel.searchCountry(query)
+        }
 
         val adapter = CountryAdapter(context!!, CountryClickListener {
             findNavController().navigate(LocationFragmentDirections.actionLocationFragmentToSingleCountryFragment(it.country))
         })
 
-        binding.refreshButton.setOnClickListener {
-            viewModel.getCountryData()
-        }
-        val query = Prefs.getString(PREFS_QUERY, PREFS_QUERY_NULL)
-        if(query != "QUERY_IS_NULL"){
-            viewModel.searchCountry(query)
-        }
         binding.countryRecyclerView.adapter = adapter
 
         viewModel.countryData.observe(viewLifecycleOwner, Observer {
@@ -67,7 +78,11 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>() {
                 }
                 is Resource.Success -> {
                     hideProgress()
-                    adapter.submitList(it.data)
+                    val sortedList = it.data.sortedByDescending { (_, value) -> value}
+                    adapter.submitList(sortedList)
+                    if(sortedList.size == 1){
+                        binding.continentName.text = sortedList[0].continent
+                    }
 
                 }
                 is Resource.Failure -> {

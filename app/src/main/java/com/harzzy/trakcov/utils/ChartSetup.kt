@@ -1,5 +1,6 @@
 package com.harzzy.trakcov.utils
 
+import android.graphics.Color
 import android.graphics.Color.rgb
 import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
@@ -12,16 +13,21 @@ import com.anychart.data.Set
 import com.anychart.enums.*
 import com.anychart.graphics.vector.SolidFill
 import com.anychart.graphics.vector.Stroke
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.harzzy.trakcov.R
 import com.harzzy.trakcov.api.response.international.InternationalResponseItem
 import com.harzzy.trakcov.api.response.trend.Timeline
 
 
 object ChartSetup {
-    fun setUpPieChart(countryData: InternationalResponseItem) : Pie {
+    fun setUpPieChart(active : Int, deaths : Int, recovered : Int) : Pie {
         val entries: MutableList<DataEntry> = ArrayList()
-        entries.add(ValueDataEntry("Active", countryData.active.toFloat()))
-        entries.add(ValueDataEntry("Deaths", countryData.deaths.toFloat()))
-        entries.add(ValueDataEntry("Recovered", countryData.recovered.toFloat()))
+        entries.add(ValueDataEntry("Active", active.toFloat()))
+        entries.add(ValueDataEntry("Deaths", deaths.toFloat()))
+        entries.add(ValueDataEntry("Recovered", recovered.toFloat()))
 
         val pie = AnyChart.pie()
         pie.data(entries)
@@ -57,9 +63,9 @@ object ChartSetup {
 
         val seriesData: MutableList<DataEntry> = ArrayList()
 
-        val cases = timeline.cases.iterator()
-        val recoveries = timeline.recovered.iterator()
-        val deaths = timeline.deaths.iterator()
+        val cases = timeline.cases.toList().sortedBy { (_, value) -> value}.toMap().iterator()
+        val recoveries = timeline.recovered.toList().sortedBy { (_, value) -> value}.toMap().iterator()
+        val deaths = timeline.deaths.toList().sortedBy { (_, value) -> value}.toMap().iterator()
 
         while (cases.hasNext() && recoveries.hasNext() && deaths.hasNext()){
             val c = cases.next()
@@ -67,6 +73,7 @@ object ChartSetup {
             val d = deaths.next()
             seriesData.add(CustomDataEntry(cases.next().key, c.value,r.value,d.value))
         }
+
 
 
         val set = Set.instantiate()
@@ -86,7 +93,7 @@ object ChartSetup {
             .anchor(Anchor.LEFT_CENTER)
             .offsetX(5.0)
             .offsetY(5.0)
-        series1.color("#ffa000")
+        series1.color("#1976d2")
 
         val series2: Line = cartesian.line(series2Mapping)
         series2.name("Recoveries")
