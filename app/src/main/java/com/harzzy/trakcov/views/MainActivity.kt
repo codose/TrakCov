@@ -19,6 +19,11 @@ import com.harzzy.trakcov.databinding.ActivityMainBinding
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 
 class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
 

@@ -18,6 +18,11 @@ import com.harzzy.trakcov.databinding.ItemNewsFragmentBinding
 import com.harzzy.trakcov.databinding.ItemStateItemBinding
 import com.harzzy.trakcov.utils.Converter
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 
 class NewsAdapter(val context : Context, val clickListener: ArticleClickListener) : ListAdapter<Article, NewsAdapter.MyViewHolder>(ArticleDiffCallback()) {
 

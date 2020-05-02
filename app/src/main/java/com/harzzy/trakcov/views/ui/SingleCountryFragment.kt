@@ -29,9 +29,11 @@ import com.pixplicity.easyprefs.library.Prefs
 import com.harzzy.trakcov.views.viewmodels.CountryViewModelFactory
 
 
-/**
- * A simple [Fragment] subclass.
- */
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 class SingleCountryFragment : BaseFragment<FragmentSingleCountryBinding>() {
 
     lateinit var pieChart : AnyChartView

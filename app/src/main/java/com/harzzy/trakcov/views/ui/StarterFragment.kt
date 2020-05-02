@@ -17,9 +17,12 @@ import com.harzzy.trakcov.databinding.FragmentStarterBinding
 import com.harzzy.trakcov.views.base.BaseFragment
 import com.pixplicity.easyprefs.library.Prefs
 
-/**
- * A simple [Fragment] subclass.
- */
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 class StarterFragment : BaseFragment<FragmentStarterBinding>() {
 
     override fun onCreateView(

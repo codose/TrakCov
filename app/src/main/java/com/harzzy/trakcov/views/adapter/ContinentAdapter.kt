@@ -12,6 +12,11 @@ import com.harzzy.trakcov.api.response.continent.ContinentResponseItem
 import com.harzzy.trakcov.api.response.international.InternationalResponseItem
 import com.harzzy.trakcov.databinding.ItemStateItemBinding
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 
 
 class ContinentAdapter(val context : Context, val clickListener: ContinentClickListener) : ListAdapter<ContinentResponseItem, ContinentAdapter.MyViewHolder>(ContinentDiffCallback()) {

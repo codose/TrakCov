@@ -1,5 +1,11 @@
 package com.harzzy.trakcov.utils
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 object Constants {
     const val PREFS_QUERY = "Query"
     const val PREFS_QUERY_NULL = "QUERY_IS_NULL"

@@ -7,6 +7,12 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.pixplicity.easyprefs.library.Prefs
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 class TrakCovApplication : Application() {
 
 

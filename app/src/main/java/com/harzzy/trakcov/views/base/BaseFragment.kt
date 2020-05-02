@@ -19,9 +19,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.harzzy.trakcov.R
 import java.util.regex.Pattern
 
-/**
- * A simple [Fragment] subclass.
- */
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 abstract class BaseFragment<DB : ViewDataBinding> : Fragment(){
     open lateinit var binding: DB
     lateinit var doubleBounce : DoubleBounce

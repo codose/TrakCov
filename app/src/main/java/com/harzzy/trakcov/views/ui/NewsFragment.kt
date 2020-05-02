@@ -24,9 +24,12 @@ import com.harzzy.trakcov.views.viewmodels.NewsViewModel
 import com.harzzy.trakcov.views.viewmodels.NewsViewModelFactory
 import com.pixplicity.easyprefs.library.Prefs
 
-/**
- * A simple [Fragment] subclass.
- */
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 class NewsFragment : BaseFragment<FragmentNewsBinding>() {
 
     override fun onCreateView(

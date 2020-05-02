@@ -21,6 +21,12 @@ import com.harzzy.trakcov.R
 import com.harzzy.trakcov.api.response.international.InternationalResponseItem
 import com.harzzy.trakcov.api.response.trend.Timeline
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 30th April, 2020
+*
+* */
+
 
 object ChartSetup {
     fun setUpPieChart(active : Int, deaths : Int, recovered : Int) : Pie {

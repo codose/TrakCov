@@ -15,6 +15,12 @@ import com.harzzy.trakcov.utils.Resource
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.coroutines.*
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 class NewsViewModel(context: Context) : ViewModel() {
 
     private val job = Job()

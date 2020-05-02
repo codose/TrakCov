@@ -11,9 +11,11 @@ import com.harzzy.trakcov.R
 import com.harzzy.trakcov.databinding.FragmentStatsBinding
 import com.harzzy.trakcov.views.base.BaseFragment
 
-/**
- * A simple [Fragment] subclass.
- */
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 class StatsFragment : BaseFragment<FragmentStatsBinding>() {
 
     override fun onCreateView(

@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.harzzy.trakcov.api.response.international.InternationalResponseItem
 import com.harzzy.trakcov.databinding.ItemStateItemBinding
 
-
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 
 class CountryAdapter(val context : Context, val clickListener: CountryClickListener) : ListAdapter<InternationalResponseItem, CountryAdapter.MyViewHolder>(CountryDiffCallback()) {
 

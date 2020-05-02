@@ -16,6 +16,12 @@ import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
 import java.util.concurrent.TimeUnit
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 class RetrofitClient(context: Context) {
 
         private var mClient: OkHttpClient? = null

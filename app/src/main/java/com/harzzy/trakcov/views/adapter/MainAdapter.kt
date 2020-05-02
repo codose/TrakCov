@@ -15,6 +15,11 @@ import com.harzzy.trakcov.api.response.state.State
 import com.harzzy.trakcov.api.response.state.nigeria.Data
 import com.harzzy.trakcov.databinding.ItemStateItemBinding
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 
 
 class MainAdapter(val context : Context, val clickListener: StateClickListener) : ListAdapter<Data, MainAdapter.MyViewHolder>(MainDiffCallback()) {

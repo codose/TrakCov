@@ -13,6 +13,12 @@ import com.harzzy.trakcov.dataStoreArchitechture.NetworkRepository
 import com.harzzy.trakcov.utils.Resource
 import kotlinx.coroutines.*
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 class MainViewModel(context: Context) : ViewModel() {
     private val job = Job()
 

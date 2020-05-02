@@ -21,9 +21,11 @@ import com.harzzy.trakcov.views.base.BaseFragment
 import com.harzzy.trakcov.views.viewmodels.CountryViewModel
 import com.harzzy.trakcov.views.viewmodels.CountryViewModelFactory
 
-/**
- * A simple [Fragment] subclass.
- */
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
 class ContinentFragment : BaseFragment<FragmentContinentBinding>() {
 
 

@@ -6,6 +6,12 @@ import java.time.Instant
 import java.time.LocalDate
 import java.util.*
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
 @SuppressLint("NewApi", "SimpleDateFormat")
 object Converter {
     fun formatDate(updated : Long) : String{

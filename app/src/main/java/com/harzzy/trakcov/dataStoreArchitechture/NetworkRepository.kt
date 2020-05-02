@@ -16,6 +16,13 @@ import com.harzzy.trakcov.api.response.trend.TrendResponse
 import com.harzzy.trakcov.utils.Resource
 import java.lang.Exception
 
+/* Created by : Osemwingie Oshodin (codose)
+*
+* Date : 27th April, 2020
+*
+* */
+
+
 class NetworkRepository(context : Context) {
 
     val retrofitClient = RetrofitClient(context)
